@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 /*
 ver: 0.2a date: 2021.04.13
@@ -74,7 +75,7 @@ namespace lesson_004
 
         static void Main(string[] args)
         {
-            Task1();
+            //Task1();
             Task2();
 
 
@@ -163,20 +164,66 @@ namespace lesson_004
                 int indx2;
 
                 string inputStr;
+                string tmpStr;
                 string textQuestion1 = " Enter a group of numbers separated by a space:";
-                string valueByDefault = "326 625 11 0 27 147";
+                string valueByDefault = "326 625 11 0 27 147 01";
 
-                char[] chars =  (Convert.ToString (GetStrFromCons(valueByDefault, textQuestion1))).ToCharArray();
+                var sb = new StringBuilder();
 
                 // block executive
-                foreach (char ch in chars)
-                {
-                    Console.WriteLine(ch);
-                   
+                inputStr = GetStrFromCons(valueByDefault, textQuestion1);
+                char[] arrChars = inputStr.ToCharArray();
+                int[] arrInt = new int[arrChars.Length];
+
+                indx1 = 0;
+                indx2 = inputStr.IndexOf(" ");
+
+                foreach (char ch in arrChars)
+                {  Console.WriteLine(ch);}
+                { int i = 0;  int j = 0;
+                    do
+                    {
+                        indx1 = i;
+                        if (arrChars[i] != ' ')
+                        {
+                            sb.Append(arrChars[i]);
+                        }
+                        else
+                        {
+                            arrInt[j] = Convert.ToInt32(sb);
+                            sb.Clear();
+                            
+                            j++;
+                        }
+                        i++;
+                    }
+                    while (i < arrChars.Length);
+
+
+
+
 
 
                 }
-                    
+                for (int i=0; i< arrChars.Length; i++)
+                {
+                    if (arrChars[i] == ' ' )
+                    {
+                        PosStart = true;
+                        indx1 = arrChars[i];
+                        for (int j = i + 1; j < arrChars.Length; j++)
+                        {
+                            if (arrChars[j]!=' ')
+                            {
+                                sb.Append(arrChars[i]);
+                               // tmpStr = tmpStr + Convert.ToString(arrChars[j]);
+                            }
+                        
+                            i = j;
+                        }
+                    }
+                }
+
 
 
                 // Parsing string 
