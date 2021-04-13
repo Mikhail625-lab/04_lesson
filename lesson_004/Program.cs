@@ -1,8 +1,7 @@
 ﻿using System;
 
-
 /*
-ver: 0.1b date: 2021.04.13
+ver: 0.2a date: 2021.04.13
 autor: Mikhail625@protonmail.com
 */
 
@@ -33,20 +32,54 @@ autor: Mikhail625@protonmail.com
  
  */
 
-
-
 namespace lesson_004
 {
-
-
     class Program
     {
+        static string GetStrFromCons( string strByDef, string strQuestion)
+        {
+            string  strResult  = "";
+            if (TestForNullOrEmpty(strQuestion)==true)
+            { strQuestion = "Enter value:"; }
+
+            Console.WriteLine(strQuestion);
+            strResult  = Console.ReadLine();
+
+            // check/verife isNull Empty
+            if (TestForNullOrEmpty( strResult )==true)
+            {
+                 strResult  = strByDef;
+                Console.WriteLine("Not value, set by default: ");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(strResult);
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("");
+
+            }
+            return  strResult ;
+        }
+
+        static string GetFullName(string firstName, string lastName, string patronymic)
+        {
+            return (firstName + " " + lastName + " " + patronymic);
+        }
+
+        static bool TestForNullOrEmpty(string s)
+        {
+            bool result;
+            result = s == null || s == string.Empty;
+            return result;
+        }
+
+
         static void Main(string[] args)
         {
+            Task1();
+            Task2();
 
 
 
-
+            static void Task1()
             { // Task № 01  Написать метод GetFullName(string firstName, string lastName, string patronymic)
               // block declare init vars
                 string name1;
@@ -54,74 +87,131 @@ namespace lesson_004
                 string name3;
                 string name4;
 
-
                 bool positive = false;
                 bool negative = false;
+                bool countDown = false;
                 string[] arrNegativeAnswear = { "0", "n", "N", "no", "NO", "н", "Н", "нет", "НЕТ", "", "", "", "", "", "", "" };
                 string[] arrPostiveAnswear = { "1", "y", "Y", "yes", "YES", "д", "Д", "да", "ДА", "", "", "", "", "", "", "", "" };
+                
+
+                string nameDef1 = "Тарковский";
+                string nameDef2 = "Арсений";
+                string nameDef3 = "Александрович";
+
+                string textQuestion1 = " Enter firstName:";
+                string textQuestion2 = " Enter lastName:";
+                string textQuestion3 = " Enter patronymic:";
                 string answear;
 
-
-
                 // block executive
+
                 /*
                 do
                 { }
                 while (answear = "n");
                 */
-                name1 = "Тарковский";
-                name2 = "Арсений";
-                name3 = "Александрович";
+
+                //GetStrFromCons(valueByDefault) 
+
+                name1 = GetStrFromCons(nameDef1, textQuestion1);
+                name2 = GetStrFromCons(nameDef2, textQuestion2);
+                name3 = GetStrFromCons(nameDef3, textQuestion3);
+
                 name4 = GetFullName(name1, name2, name3);
 
                 // Configure console.
+                Console.Title = "lesson n 4";
                 Console.BufferWidth = 80;
                 Console.WindowWidth = Console.BufferWidth;
                 Console.TreatControlCAsInput = true;
-                Console.Title = "lesson n 4";
-                Console.WriteLine(" \n   {0}", GetFullName(name1, name2 , name3) );
-                
-                System.Threading.Thread.Sleep(10000);
-                Console.Clear();
-                static string GetFullName(string firstName, string lastName, string patronymic)
-                {
-                    return (firstName + " " + lastName + " " + patronymic);
+
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write(" Result:");
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("\n   {0}", GetFullName(name1, name2 , name3) );
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("   \n \n Screen clear after :");
+
+
+                for (int i=21; i>0; i--)
+                {   
+                System.Threading.Thread.Sleep(1000);
+                    if (i == 10) { countDown = true; }
+                    if (countDown == true)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    else Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.Write("\r    ");
+                    Console.Write("\r  {0}", i);  
                 }
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Clear();
+
  
                 // end of  Task № 01  Написать метод GetFullName(string firstName, string lastName, string patronymic)
             }
 
 
-
-            { // Task № xx
+            static void Task2()
+            { // Task № 02
               // block declare init vars
-              // block executive
-              // end of  Task № xx
+                bool PosStart = false;
+                bool PosFinish = false;
+
+                int indx1;
+                int indx2;
+
+                string inputStr;
+                string textQuestion1 = " Enter a group of numbers separated by a space:";
+                string valueByDefault = "326 625 11 0 27 147";
+
+                char[] chars =  (Convert.ToString (GetStrFromCons(valueByDefault, textQuestion1))).ToCharArray();
+
+                // block executive
+                foreach (char ch in chars)
+                {
+                    Console.WriteLine(ch);
+                   
+
+
+                }
+                    
+
+
+                // Parsing string 
+                /*
+                 char[] chars = str.ToCharArray();
+
+                */
+
+
+                // end of  Task № xx
             }
 
-            { // Task № xx
-              // block declare init vars
-              // block executive
-              // end of  Task № xx
-            }
+{ // Task № xx
+// block declare init vars
+// block executive
+// end of  Task № xx
+}
 
-            { // Task № xx
-              // block declare init vars
-              // block executive
-              // end of  Task № xx
-            }
+{ // Task № xx
+// block declare init vars
+// block executive
+// end of  Task № xx
+}
 
-            { // Task № xx
-              // block declare init vars
-              // block executive
-              // end of  Task № xx
-            }
+{ // Task № xx
+// block declare init vars
+// block executive
+// end of  Task № xx
+}
 
-            { // Task № xx
-              // block declare init vars
-              // block executive
-              // end of  Task № xx
-            }
-        }
-    }
+{ // Task № xx
+// block declare init vars
+// block executive
+// end of  Task № xx
+}
+}
+}
 }
