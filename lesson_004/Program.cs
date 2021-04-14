@@ -133,7 +133,7 @@ namespace lesson_004
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("   \n \n Screen clear after :");
 
-
+                // shutdown countdown 
                 for (int i=21; i>0; i--)
                 {   
                 System.Threading.Thread.Sleep(1000);
@@ -155,85 +155,107 @@ namespace lesson_004
 
 
             static void Task2()
-            { // Task № 02
+            { // Task № 02 Ура !Работат. Надо причесать 
               // block declare init vars
-                bool PosStart = false;
-                bool PosFinish = false;
 
-                int indx1;
-                int indx2;
+               // int indx1;
+               // int indx2;
+                int summaNumbers = 0;
+                int countNumbers = 0; // количество слов и\или чисел вычлененных из строки; необязательный 
 
                 string inputStr;
-                string tmpStr;
-                string textQuestion1 = " Enter a group of numbers separated by a space:";
-                string valueByDefault = "326 625 11 0 27 147 01";
+                string textQuestion1 = " Enter a group of numbers separated by a space: \n or press key [ENTER] for set value by default:";
+                string valueByDefault ;
+                //for testing:
+                valueByDefault = "01 326 625 11 0 27 147 "; // 	 correct result : 1137
+
+             
+                valueByDefault = "144 1"; //correct result : 145  Test:OK! 
+                valueByDefault = "147 326 625 11 0 27 01 "; //correct result : 1137 Test:OK! 
+                valueByDefault = "01 326 625 11 0 27 147"; //correct result : 1137 Test:OK! 
+                valueByDefault = "5369 8001	2914 7786 81 7989 2139 4026";     //	 correct result :38305  range 10-10000	+ \t in middle string  
+                valueByDefault = "5369 8001	2914 7786	81	7989	2139	4026";    //	 correct result :38305  range 10-10000	+ double SPACE in middle string  
+                valueByDefault = " 6270	4245	2736	8936	4795	4932	1703	4424";// correct result :38041	range 1000-10000	+ prime symbol is SPACE
+
+                valueByDefault = "32	55	59	87	71	33	15	98 ";              // correct result : 450	range 10-100    + SPACE end string 	
+                valueByDefault = "458	908	485	704	800	342	740	0440";// correct result : 4877	range 100-1000	 + last number 0xx
+                valueByDefault = " 6270	4245	2736	8936	4795	4932	1703	4424";// correct result :38041	range 1000-10000	+ prime symbol is SPACE
+                 
 
                 var sb = new StringBuilder();
 
                 // block executive
                 inputStr = GetStrFromCons(valueByDefault, textQuestion1);
+                inputStr = (inputStr.Replace('\t', ' ')).Trim(' '); // избавляемся от вкравшихся табов и пограничных пробелов 
                 char[] arrChars = inputStr.ToCharArray();
-                int[] arrInt = new int[arrChars.Length];
 
-                indx1 = 0;
-                indx2 = inputStr.IndexOf(" ");
-
-                foreach (char ch in arrChars)
-                {  Console.WriteLine(ch);}
-                { int i = 0;  int j = 0;
+                // run parsing 
+                { int i = 0; // int j = 0;
                     do
                     {
-                        indx1 = i;
-                        if (arrChars[i] != ' ')
+
+                        if ( (arrChars[i] != ' ') && (i<arrChars.Length-1) ) // or end lenth\range massive
                         {
                             sb.Append(arrChars[i]);
                         }
-                        else
+                        else if ((arrChars[i] != ' ') && i == arrChars.Length-1)
                         {
-                            arrInt[j] = Convert.ToInt32(sb);
+                            sb.Append(arrChars[i]);
+                            summaNumbers = summaNumbers + Convert.ToInt32(sb.ToString());
                             sb.Clear();
-                            
-                            j++;
+                            countNumbers++;
+
+                        }
+                        else if (arrChars[i]==' ')
+                        {
+                            summaNumbers = summaNumbers + Convert.ToInt32(sb.ToString());
+                            sb.Clear();
+                            countNumbers++;
                         }
                         i++;
                     }
                     while (i < arrChars.Length);
-
-
-
-
-
+  
 
                 }
-                for (int i=0; i< arrChars.Length; i++)
-                {
-                    if (arrChars[i] == ' ' )
-                    {
-                        PosStart = true;
-                        indx1 = arrChars[i];
-                        for (int j = i + 1; j < arrChars.Length; j++)
-                        {
-                            if (arrChars[j]!=' ')
-                            {
-                                sb.Append(arrChars[i]);
-                               // tmpStr = tmpStr + Convert.ToString(arrChars[j]);
-                            }
-                        
-                            i = j;
-                        }
-                    }
-                }
+                // Report:
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("*************** Output  report  & results   *********************");
+                Console.ForegroundColor = ConsoleColor.Gray;
+
+                Console.Write("Source string : \"");Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(inputStr );Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write("\" ");
+
+                Console.Write("  Detected {0} numbers " , countNumbers);
+                Console.WriteLine("");
+
+                //countNumbers
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("");
+
+                Console.Write("Summa =");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(summaNumbers);
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("");
 
 
-
-                // Parsing string 
+                // shutdown countdown 
                 /*
-                 char[] chars = str.ToCharArray();
-
+                for (int i = 21; i > 0; i--)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    if (i == 10) 
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    else Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.Write("\r    ");
+                    Console.Write("\r  {0}", i);
+                }
                 */
-
-
-                // end of  Task № xx
+                // end of  Task № 02
             }
 
 { // Task № xx
