@@ -43,16 +43,17 @@ namespace lesson_004
             if (TestForNullOrEmpty(strQuestion)==true)
             { strQuestion = "Enter value:"; }
 
-            Console.WriteLine(strQuestion);
+            Console.Write(strQuestion);
             strResult  = Console.ReadLine();
 
             // check/verife isNull Empty
             if (TestForNullOrEmpty( strResult )==true)
             {
                  strResult  = strByDef;
-                Console.WriteLine("Not value, set by default: ");
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.Write("       " + "Not value, set by default: ");
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write(strResult);
+                Console.Write( strResult);
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("");
 
@@ -62,8 +63,32 @@ namespace lesson_004
 
         static string GetFullName(string firstName, string lastName, string patronymic)
         {
-            return (firstName + " " + lastName + " " + patronymic);
+            return ("  " + firstName + " " + lastName + " " + patronymic);
         }
+
+        static void ClearScr(int countDown, int warningTimer)
+        {
+            bool bWarning=false;
+
+            for (int i = (countDown + 1); i > 0; i--)
+            {
+                System.Threading.Thread.Sleep(1000);
+                if (i == warningTimer) { bWarning = true; }
+                if (bWarning == true)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                else Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write("\r         ");
+                Console.Write("\r     [{0}]", i);
+            }
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Clear();
+
+
+
+        }
+
 
         static bool TestForNullOrEmpty(string s)
         {
@@ -75,7 +100,7 @@ namespace lesson_004
 
         static void Main(string[] args)
         {
-            //Task1();
+            Task1();
             Task2();
 
 
@@ -105,14 +130,9 @@ namespace lesson_004
                 string answear;
 
                 // block executive
-
-                /*
-                do
-                { }
-                while (answear = "n");
-                */
-
-                //GetStrFromCons(valueByDefault) 
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("***************     Run Task 1     ***************");
+                Console.ForegroundColor = ConsoleColor.Gray;
 
                 name1 = GetStrFromCons(nameDef1, textQuestion1);
                 name2 = GetStrFromCons(nameDef2, textQuestion2);
@@ -120,39 +140,23 @@ namespace lesson_004
 
                 name4 = GetFullName(name1, name2, name3);
 
-                // Configure console.
-                Console.Title = "lesson n 4";
-                Console.BufferWidth = 80;
-                Console.WindowWidth = Console.BufferWidth;
-                Console.TreatControlCAsInput = true;
 
+
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("*************** Output  report  & results   ******");
+                Console.ForegroundColor = ConsoleColor.Gray;
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.Write(" Result:");
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.WriteLine("\n   {0}", GetFullName(name1, name2 , name3) );
+                Console.Write("{0}", GetFullName(name1, name2 , name3) );
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine("   \n \n Screen clear after :");
+                Console.WriteLine("   \n \n   Screen clear after :");
 
                 // shutdown countdown 
-                for (int i=21; i>0; i--)
-                {   
-                System.Threading.Thread.Sleep(1000);
-                    if (i == 10) { countDown = true; }
-                    if (countDown == true)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                    }
-                    else Console.ForegroundColor = ConsoleColor.Gray;
-                    Console.Write("\r    ");
-                    Console.Write("\r  {0}", i);  
-                }
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Clear();
+                ClearScr(21, 10);
 
- 
                 // end of  Task № 01  Написать метод GetFullName(string firstName, string lastName, string patronymic)
             }
-
 
             static void Task2()
             { // Task № 02 Ура !Работат. Надо причесать 
@@ -164,27 +168,26 @@ namespace lesson_004
                 int countNumbers = 0; // количество слов и\или чисел вычлененных из строки; необязательный 
 
                 string inputStr;
-                string textQuestion1 = " Enter a group of numbers separated by a space: \n or press key [ENTER] for set value by default:";
+                string textQuestion1 = "   Enter a group of numbers separated by a space: \n   or press key [ENTER] for set value by default:";
                 string valueByDefault ;
                 //for testing:
+                /*
                 valueByDefault = "01 326 625 11 0 27 147 "; // 	 correct result : 1137
-
-             
                 valueByDefault = "144 1"; //correct result : 145  Test:OK! 
                 valueByDefault = "147 326 625 11 0 27 01 "; //correct result : 1137 Test:OK! 
                 valueByDefault = "01 326 625 11 0 27 147"; //correct result : 1137 Test:OK! 
-                valueByDefault = "5369 8001	2914 7786 81 7989 2139 4026";     //	 correct result :38305  range 10-10000	+ \t in middle string  
-                valueByDefault = "5369 8001	2914 7786	81	7989	2139	4026";    //	 correct result :38305  range 10-10000	+ double SPACE in middle string  
+                valueByDefault = "5369 8001	2914 7786 81 7989 2139 4026";     //	 correct result :38305  Test:OK!  range 10-10000	+ \t in middle string  
+                valueByDefault = "5369 8001	2914 7786	81	7989	2139	4026";    //	 correct result :38305  Test:OK!  range 10-10000	+ double SPACE in middle string  
                 valueByDefault = " 6270	4245	2736	8936	4795	4932	1703	4424";// correct result :38041	range 1000-10000	+ prime symbol is SPACE
-
-                valueByDefault = "32	55	59	87	71	33	15	98 ";              // correct result : 450	range 10-100    + SPACE end string 	
-                valueByDefault = "458	908	485	704	800	342	740	0440";// correct result : 4877	range 100-1000	 + last number 0xx
                 valueByDefault = " 6270	4245	2736	8936	4795	4932	1703	4424";// correct result :38041	range 1000-10000	+ prime symbol is SPACE
-                 
+                valueByDefault = "32	55	59	87	71	33	15	98 "; // correct result : 450	range 10-100    + SPACE end string 	
+                */
+                valueByDefault = "458	908	485	704	800	342	740	0440";// correct result : 4877  Test:OK! 	range 100-1000	 + last number 0xx
 
                 var sb = new StringBuilder();
 
                 // block executive
+                Console.WriteLine("***************     Run Task 2     ***************");
                 inputStr = GetStrFromCons(valueByDefault, textQuestion1);
                 inputStr = (inputStr.Replace('\t', ' ')).Trim(' '); // избавляемся от вкравшихся табов и пограничных пробелов 
                 char[] arrChars = inputStr.ToCharArray();
@@ -193,7 +196,6 @@ namespace lesson_004
                 { int i = 0; // int j = 0;
                     do
                     {
-
                         if ( (arrChars[i] != ' ') && (i<arrChars.Length-1) ) // or end lenth\range massive
                         {
                             sb.Append(arrChars[i]);
@@ -204,7 +206,6 @@ namespace lesson_004
                             summaNumbers = summaNumbers + Convert.ToInt32(sb.ToString());
                             sb.Clear();
                             countNumbers++;
-
                         }
                         else if (arrChars[i]==' ')
                         {
@@ -215,46 +216,32 @@ namespace lesson_004
                         i++;
                     }
                     while (i < arrChars.Length);
-  
 
                 }
                 // Report:
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine("*************** Output  report  & results   *********************");
+                Console.WriteLine("*************** Output  report  & results   ******");
                 Console.ForegroundColor = ConsoleColor.Gray;
 
-                Console.Write("Source string : \"");Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write(inputStr );Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write("   " + "Source string : \"");Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write("   " + inputStr );Console.ForegroundColor = ConsoleColor.Gray;
                 Console.Write("\" ");
 
-                Console.Write("  Detected {0} numbers " , countNumbers);
-                Console.WriteLine("");
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("  Detected {0} numbers " , countNumbers);
+                Console.WriteLine(""); Console.ForegroundColor = ConsoleColor.Gray;
 
                 //countNumbers
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine("");
+                //Console.ForegroundColor = ConsoleColor.Gray;
+                //Console.WriteLine("");
 
-                Console.Write("Summa =");
+                Console.Write("   " + "Summa =");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(summaNumbers);
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("");
 
-
-                // shutdown countdown 
-                /*
-                for (int i = 21; i > 0; i--)
-                {
-                    System.Threading.Thread.Sleep(1000);
-                    if (i == 10) 
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                    }
-                    else Console.ForegroundColor = ConsoleColor.Gray;
-                    Console.Write("\r    ");
-                    Console.Write("\r  {0}", i);
-                }
-                */
+                ClearScr(21, 10);
                 // end of  Task № 02
             }
 
