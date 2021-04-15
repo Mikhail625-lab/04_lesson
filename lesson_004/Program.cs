@@ -97,6 +97,7 @@ namespace lesson_004
             return result;
         }
 
+       // static bool StrInArr (string s , arra)
 
         static void Main(string[] args)
         {
@@ -113,9 +114,8 @@ namespace lesson_004
                 string name3;
                 string name4;
 
-                bool positive = false;
-                bool negative = false;
-                bool countDown = false;
+                bool Finish = false;
+
                 string[] arrNegativeAnswear = { "0", "n", "N", "no", "NO", "н", "Н", "нет", "НЕТ", "", "", "", "", "", "", "" };
                 string[] arrPostiveAnswear = { "1", "y", "Y", "yes", "YES", "д", "Д", "да", "ДА", "", "", "", "", "", "", "", "" };
                 
@@ -127,33 +127,48 @@ namespace lesson_004
                 string textQuestion1 = " Enter firstName:";
                 string textQuestion2 = " Enter lastName:";
                 string textQuestion3 = " Enter patronymic:";
-                string answear;
+                string answer;  
 
                 // block executive
                 Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine("***************     Run Task 1     ***************");
                 Console.ForegroundColor = ConsoleColor.Gray;
 
-                name1 = GetStrFromCons(nameDef1, textQuestion1);
-                name2 = GetStrFromCons(nameDef2, textQuestion2);
-                name3 = GetStrFromCons(nameDef3, textQuestion3);
+                while (Finish == false)  // do
+                {
+                    answer = "";
+                    name1 = GetStrFromCons(nameDef1, textQuestion1);
+                    name2 = GetStrFromCons(nameDef2, textQuestion2);
+                    name3 = GetStrFromCons(nameDef3, textQuestion3);
 
-                name4 = GetFullName(name1, name2, name3);
+                    name4 = GetFullName(name1, name2, name3);
 
 
 
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine("*************** Output  report  & results   ******");
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Write(" Result:");
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.Write("{0}", GetFullName(name1, name2 , name3) );
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine("   \n \n   Screen clear after :");
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine("*************** Output  report  & results   ******");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.Write(" Result:");
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write("{0}", GetFullName(name1, name2, name3));
+                    Console.ForegroundColor = ConsoleColor.Gray;
+
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine("    Next? (Y/N) :  ");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    answer = Console.ReadLine();
+                    Console.ForegroundColor = ConsoleColor.Gray;
+
+                    if (answer.ToUpper().Equals("N")== true)
+                    { Finish = true; }    
+                    else
+                    { Finish = false; }
+                }
 
                 // shutdown countdown 
-                ClearScr(21, 10);
+                Console.WriteLine("   \n \n   Screen clear after :");
+                ClearScr(10, 5);
 
                 // end of  Task № 01  Написать метод GetFullName(string firstName, string lastName, string patronymic)
             }
