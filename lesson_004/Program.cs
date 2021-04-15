@@ -35,6 +35,13 @@ autor: Mikhail625@protonmail.com
 
 namespace lesson_004
 {
+
+    enum Month
+    {
+        January =1, February, March, April, May, June, July, August, September, October, November, December
+
+    }
+
     class Program
     {
         static string GetStrFromCons(string strByDef, string strQuestion)
@@ -99,8 +106,8 @@ namespace lesson_004
 
         static void Main(string[] args)
         {
-            Task1();
-            Task2();
+            //Task1();
+           // Task2();
             Task3();
 
             static void Task1()
@@ -250,7 +257,8 @@ namespace lesson_004
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("");
 
-                ClearScr(20, 10);
+                Console.WriteLine("   \n \n   Screen clear after :");
+                ClearScr(10, 5);
                 // end of  Task № 02
 
             }
@@ -259,10 +267,21 @@ namespace lesson_004
 
             static void Task3()
             {
+                // block declare init vars
+                Random rnd = new Random();
+                string textQuestion1 = "   Введите номер месяца \n   или нажмите клавишу [Enter] \n   для ввода значения по умолчанию \n   ";
+                string strErr ="   Ошибка: введите число от 1 до 12";
+
+                
+                Console.WriteLine("***************     Run Task 3     ***************");
+                string inputStr = GetStrFromCons( Convert.ToString(rnd.Next(1,12)), textQuestion1);
+
 
 
             }
-        }
+
+ 
+    }
 
     }
 }
