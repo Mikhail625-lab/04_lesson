@@ -2,7 +2,7 @@
 using System.Text;
 
 /*
-ver: 0.2a date: 2021.04.13
+ver: 0.3a date: 2021.04.13
 autor: Mikhail625@protonmail.com
 */
 
@@ -39,7 +39,6 @@ namespace lesson_004
     enum Month
     {
         January =1, February, March, April, May, June, July, August, September, October, November, December
-
     }
 
     class Program
@@ -106,8 +105,8 @@ namespace lesson_004
 
         static void Main(string[] args)
         {
-            //Task1();
-           // Task2();
+            Task1();
+            Task2();
             Task3();
 
             static void Task1()
@@ -274,6 +273,7 @@ namespace lesson_004
 
                 
                 Console.WriteLine("***************     Run Task 3     ***************");
+                Console.WriteLine("*                                                *");
                 string inputStr = GetStrFromCons( Convert.ToString(rnd.Next(1,12)), textQuestion1);
 
 
