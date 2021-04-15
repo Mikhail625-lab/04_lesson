@@ -37,28 +37,28 @@ namespace lesson_004
 {
     class Program
     {
-        static string GetStrFromCons( string strByDef, string strQuestion)
+        static string GetStrFromCons(string strByDef, string strQuestion)
         {
-            string  strResult  = "";
-            if (TestForNullOrEmpty(strQuestion)==true)
+            string strResult = "";
+            if (TestForNullOrEmpty(strQuestion) == true)
             { strQuestion = "Enter value:"; }
 
             Console.Write(strQuestion);
-            strResult  = Console.ReadLine();
+            strResult = Console.ReadLine();
 
             // check/verife isNull Empty
-            if (TestForNullOrEmpty( strResult )==true)
+            if (TestForNullOrEmpty(strResult) == true)
             {
-                 strResult  = strByDef;
+                strResult = strByDef;
                 Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.Write("       " + "Not value, set by default: ");
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write( strResult);
+                Console.Write(strResult);
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("");
 
             }
-            return  strResult ;
+            return strResult;
         }
 
         static string GetFullName(string firstName, string lastName, string patronymic)
@@ -68,7 +68,7 @@ namespace lesson_004
 
         static void ClearScr(int countDown, int warningTimer)
         {
-            bool bWarning=false;
+            bool bWarning = false;
 
             for (int i = (countDown + 1); i > 0; i--)
             {
@@ -97,14 +97,11 @@ namespace lesson_004
             return result;
         }
 
-       // static bool StrInArr (string s , arra)
-
         static void Main(string[] args)
         {
             Task1();
             Task2();
-
-
+            Task3();
 
             static void Task1()
             { // Task № 01  Написать метод GetFullName(string firstName, string lastName, string patronymic)
@@ -118,7 +115,7 @@ namespace lesson_004
 
                 string[] arrNegativeAnswear = { "0", "n", "N", "no", "NO", "н", "Н", "нет", "НЕТ", "", "", "", "", "", "", "" };
                 string[] arrPostiveAnswear = { "1", "y", "Y", "yes", "YES", "д", "Д", "да", "ДА", "", "", "", "", "", "", "", "" };
-                
+
 
                 string nameDef1 = "Тарковский";
                 string nameDef2 = "Арсений";
@@ -127,7 +124,7 @@ namespace lesson_004
                 string textQuestion1 = " Enter firstName:";
                 string textQuestion2 = " Enter lastName:";
                 string textQuestion3 = " Enter patronymic:";
-                string answer;  
+                string answer;
 
                 // block executive
                 Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -142,8 +139,6 @@ namespace lesson_004
                     name3 = GetStrFromCons(nameDef3, textQuestion3);
 
                     name4 = GetFullName(name1, name2, name3);
-
-
 
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.WriteLine("*************** Output  report  & results   ******");
@@ -160,8 +155,8 @@ namespace lesson_004
                     answer = Console.ReadLine();
                     Console.ForegroundColor = ConsoleColor.Gray;
 
-                    if (answer.ToUpper().Equals("N")== true)
-                    { Finish = true; }    
+                    if (answer.ToUpper().Equals("N") == true)
+                    { Finish = true; }
                     else
                     { Finish = false; }
                 }
@@ -174,17 +169,15 @@ namespace lesson_004
             }
 
             static void Task2()
-            { // Task № 02 Ура !Работат. Надо причесать 
+            { // Task № 02 
               // block declare init vars
 
-               // int indx1;
-               // int indx2;
                 int summaNumbers = 0;
                 int countNumbers = 0; // количество слов и\или чисел вычлененных из строки; необязательный 
 
                 string inputStr;
                 string textQuestion1 = "   Enter a group of numbers separated by a space: \n   or press key [ENTER] for set value by default:";
-                string valueByDefault ;
+                string valueByDefault;
                 //for testing:
                 /*
                 valueByDefault = "01 326 625 11 0 27 147 "; // 	 correct result : 1137
@@ -208,21 +201,22 @@ namespace lesson_004
                 char[] arrChars = inputStr.ToCharArray();
 
                 // run parsing 
-                { int i = 0; // int j = 0;
+                {
+                    int i = 0; // int j = 0;
                     do
                     {
-                        if ( (arrChars[i] != ' ') && (i<arrChars.Length-1) ) // or end lenth\range massive
+                        if ((arrChars[i] != ' ') && (i < arrChars.Length - 1)) // or end lenth\range massive
                         {
                             sb.Append(arrChars[i]);
                         }
-                        else if ((arrChars[i] != ' ') && i == arrChars.Length-1)
+                        else if ((arrChars[i] != ' ') && i == arrChars.Length - 1)
                         {
                             sb.Append(arrChars[i]);
                             summaNumbers = summaNumbers + Convert.ToInt32(sb.ToString());
                             sb.Clear();
                             countNumbers++;
                         }
-                        else if (arrChars[i]==' ')
+                        else if (arrChars[i] == ' ')
                         {
                             summaNumbers = summaNumbers + Convert.ToInt32(sb.ToString());
                             sb.Clear();
@@ -238,12 +232,12 @@ namespace lesson_004
                 Console.WriteLine("*************** Output  report  & results   ******");
                 Console.ForegroundColor = ConsoleColor.Gray;
 
-                Console.Write("   " + "Source string : \"");Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("   " + inputStr );Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write("   " + "Source string : \""); Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write("   " + inputStr); Console.ForegroundColor = ConsoleColor.Gray;
                 Console.Write("\" ");
 
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine("  Detected {0} numbers " , countNumbers);
+                Console.WriteLine("  Detected {0} numbers ", countNumbers);
                 Console.WriteLine(""); Console.ForegroundColor = ConsoleColor.Gray;
 
                 //countNumbers
@@ -256,33 +250,20 @@ namespace lesson_004
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("");
 
-                ClearScr(21, 10);
+                ClearScr(20, 10);
                 // end of  Task № 02
+
             }
 
-{ // Task № xx
-// block declare init vars
-// block executive
-// end of  Task № xx
+
+
+            static void Task3()
+            {
+
+
+            }
+        }
+
+    }
 }
 
-{ // Task № xx
-// block declare init vars
-// block executive
-// end of  Task № xx
-}
-
-{ // Task № xx
-// block declare init vars
-// block executive
-// end of  Task № xx
-}
-
-{ // Task № xx
-// block declare init vars
-// block executive
-// end of  Task № xx
-}
-}
-}
-}
